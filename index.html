@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agência Futura IA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Variáveis CSS para cores neon */
+        :root {
+            --neon-blue: #00e5ff;
+            --neon-cyan: #00ffff;
+            --dark-blue: #004d66;
+        }
+
+        /* Estilo base do corpo da página */
+        body {
+            margin: 0;
+            overflow: hidden; /* Garante que não haja barras de rolagem */
+            font-family: 'Orbitron', sans-serif; /* Aplica a fonte Orbitron */
+            color: white; /* Cor do texto padrão */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Empurra o rodapé para baixo e o conteúdo para o centro */
+            align-items: center; /* Centraliza o conteúdo horizontalmente */
+            min-height: 100vh; /* Altura total da viewport */
+            text-align: center;
+            background-color: #000; /* Fallback para caso o vídeo não carregue */
+        }
+
+        /* Vídeo de fundo - Regra 1 */
+        video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+
+        /* Conteúdo principal da página (título e botão) */
+        .main-content {
+            flex-grow: 1; /* Permite que o conteúdo ocupe o espaço disponível */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centraliza o conteúdo verticalmente */
+            align-items: center; /* Centraliza o conteúdo horizontalmente */
+            padding: 20px;
+            z-index: 1; /* Garante que o conteúdo fique acima do vídeo */
+            width: 100%; /* Ocupa toda a largura para centralização */
+            max-width: 900px; /* Limita a largura para melhor legibilidade */
+        }
+
+        /* Título principal - Regra 3 */
+        h1 {
+            font-size: clamp(2rem, 5vw, 4rem); /* Tamanho de fonte responsivo */
+            color: white;
+            text-shadow: 0 0 10px var(--neon-blue), /* Efeito de brilho neon/holográfico */
+                         0 0 20px var(--neon-cyan),
+                         0 0 30px var(--neon-blue),
+                         0 0 40px var(--neon-cyan);
+            margin-bottom: 40px;
+            opacity: 0; /* Começa invisível - Regra 5 */
+            /* Animação: nome, duração, timing, atraso (4s), mantém estado final - Regra 5 */
+            animation: fadeIn 2s ease-out 4s forwards;
+            padding: 0 10px; /* Adiciona um pequeno padding para evitar cortes em telas pequenas */
+        }
+
+        /* Botão de WhatsApp - Regra 4 */
+        .whatsapp-button {
+            display: inline-block;
+            background-color: var(--dark-blue);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px; /* Botão arredondado */
+            font-size: clamp(1rem, 2vw, 1.2rem); /* Tamanho de fonte responsivo */
+            font-weight: 700;
+            letter-spacing: 1px;
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5); /* Sombra inicial */
+            transition: all 0.3s ease-in-out; /* Transição suave para o hover */
+            cursor: pointer;
+            z-index: 1;
+            opacity: 0; /* Começa invisível - Regra 5 */
+            /* Animação com um atraso ligeiramente maior para um efeito escalonado - Regra 5 */
+            animation: fadeIn 2s ease-out 4.5s forwards;
+        }
+
+        /* Efeito de hover do botão - Regra 4 */
+        .whatsapp-button:hover {
+            background-color: var(--neon-blue);
+            box-shadow: 0 0 25px var(--neon-cyan), /* Brilho maior no hover */
+                        0 0 40px var(--neon-blue);
+            transform: scale(1.05); /* Pequeno aumento de tamanho */
+        }
+
+        /* Rodapé - Regra 6 */
+        .footer-text {
+            font-size: 0.8rem; /* Pequeno e discreto */
+            color: rgba(255, 255, 255, 0.5); /* Cor suave */
+            padding: 10px;
+            z-index: 1;
+            opacity: 0; /* Começa invisível - Regra 5 */
+            /* Animação com um atraso ainda maior - Regra 5 */
+            animation: fadeIn 2s ease-out 5s forwards;
+        }
+
+        /* Animação @keyframes para o 'fade in' - Regra 5 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px); /* Efeito de deslizar para cima */
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsividade para telas menores */
+        @media (max-width: 768px) {
+            h1 {
+                margin-bottom: 30px;
+            }
+            .whatsapp-button {
+                padding: 12px 25px;
+            }
+        }
+        @media (max-width: 480px) {
+            h1 {
+                font-size: clamp(1.8rem, 7vw, 3rem);
+                margin-bottom: 20px;
+            }
+            .whatsapp-button {
+                font-size: 0.9rem;
+                padding: 10px 20px;
+            }
+            .footer-text {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Vídeo de fundo - Regra 1 -->
+    <video autoplay loop muted playsinline style='position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -1; object-fit: cover; filter: brightness(0.6);'><source src='nave.mp4' type='video/mp4'></video>
+
+    <div class="main-content">
+        <!-- Texto Principal - Regra 3 -->
+        <h1>Agência de Designer com IAs, a melhor do mundo</h1>
+        <!-- Botão de WhatsApp - Regra 4 -->
+        <a href="https://wa.me/5515991644818" target="_blank" class="whatsapp-button">
+            LIGUE PARA NÓS (15) 99164-4818
+            <e-mail>edilsomdecamposdasilva@gmail.com</e-mail>
+        </a>
+    </div>
+
+    <!-- Rodapé - Regra 6 -->
+    <p class="footer-text">Criado pelo Mestre Jedi Edilsom de Campos</p>
+
+</body>
+</html>
